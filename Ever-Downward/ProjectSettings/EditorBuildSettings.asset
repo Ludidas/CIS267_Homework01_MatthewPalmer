@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: abe74a99dc509a5418a92dfb1da57a71
+  - enabled: 1
     path: Assets/Scenes/InfiniteRunner.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/ScoreMenu.unity
+    guid: d1edb131e9518454f943e15b68575d41
   m_configObjects: {}

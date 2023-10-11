@@ -12,12 +12,14 @@ public class PlayerMovement : MonoBehaviour
     public float movementSpeed;
     public float jumpForce;
     public float hangTime;
+    public float jumpBufferLength;
 
     //Private variables
     private Rigidbody2D playerRB;
     private float inputHorizontal;
     private bool isGrounded;
     private float hangCounter;
+    private float jumpBufferCount;
 
     // Start is called before the first frame update
     void Start()
@@ -61,12 +63,14 @@ public class PlayerMovement : MonoBehaviour
     private void jump()
     {
         hangTimer();
+        jumpBuffer();
 
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded==true)
+        if (jumpBufferCount>0 && hangCounter > 0)
         {
             playerRB.velocity = new Vector2(playerRB.velocity.x, jumpForce);
 
             isGrounded = false;
+            jumpBufferCount = 0;
         }
 
         //Allows for shorthopping if space bar is released
@@ -78,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    //currently doesn't work
+    //Adds hang-timer, which allows for jumping even momentarily after a player falls off of a platform
     private void hangTimer()
     {
         if (isGrounded)
@@ -91,6 +95,19 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    //Allows for jump input slightly before landing
+    private void jumpBuffer()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            jumpBufferCount = jumpBufferLength;
+        }
+        else 
+        { 
+            jumpBufferCount -= Time.deltaTime; 
+        }
+    }
+    //When a platform is being stood on, sets grounded boolean to true
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //Debug.Log(collision.gameObject);
@@ -104,13 +121,27 @@ public class PlayerMovement : MonoBehaviour
         {
             isGrounded = true;
         }
-
-
+    }
+    //When a platform is no longer being stood on, sets grounded boolean to false
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        isGrounded=false;
     }
 
     //For collectables
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        
+        if(collision.gameObject.CompareTag("Scroll") || collision.gameObject.CompareTag("Ring") || collision.gameObject.CompareTag("Diamond"))
+        {
+            //get value of collectable
+            int collectableValue = collision.GetComponent<Collectables>().getCollectableValue();
+            //destroy the collectable
+            collision.GetComponent<Collectables>().destroyCollectable();
+            //add to player score
+            GetComponent<PlayerScore>().setGold(collectableValue);
+        }
 
+        
     }
 }
