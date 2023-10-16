@@ -826,6 +826,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Title Card
       objectReference: {fileID: 0}
+    - target: {fileID: 3626916397498700004, guid: 20d4eacc074d1c7468d99feddb04bc86, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 20d4eacc074d1c7468d99feddb04bc86, type: 3}
       propertyPath: m_LocalScale.x
       value: 5
