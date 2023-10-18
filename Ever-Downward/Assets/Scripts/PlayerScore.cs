@@ -16,11 +16,6 @@ public class PlayerScore : MonoBehaviour
         depth = 0; gold = 0;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public int getDepth()
     {

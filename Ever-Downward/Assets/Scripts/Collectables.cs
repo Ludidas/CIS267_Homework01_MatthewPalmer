@@ -6,11 +6,7 @@ using UnityEngine;
 public class Collectables : MonoBehaviour
 {
     public int collectableValue;
-    // Start is called before the first frame update
-    void Start()
-    {
 
-    }
 
     public void destroyCollectable()
     {

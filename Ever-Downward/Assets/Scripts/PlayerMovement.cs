@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -25,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         playerRB = GetComponent<Rigidbody2D>();
-        gm = gameManager.AddComponent<GameManager>();
+        gm = gameManager.GetComponent<GameManager>();
         //if jumpTrigger is set to True, the player cannot jump, and vice versa
         isGrounded = false;
 
@@ -112,10 +113,10 @@ public class PlayerMovement : MonoBehaviour
     {
         //Debug.Log(collision.gameObject);
 
-        if (collision.gameObject.CompareTag("Lava"))
+        if (collision.gameObject.CompareTag("OB"))
         {
-            //gm.setGameOver(true);
-
+            gm.setGameOver(true);
+            Debug.Log("Touched OB");
         }
         else if (collision.gameObject.CompareTag("Grounded"))
         {

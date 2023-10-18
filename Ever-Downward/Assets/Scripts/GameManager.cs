@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -23,11 +24,16 @@ public class GameManager : MonoBehaviour
     }
 
     //Game Over========================================
-    public bool getGameOver() { return gameOver; }
+    public bool getGameOver() 
+    { 
+        return gameOver; 
+    }
 
     public void setGameOver(bool g)
     {
         gameOver = g;
+        Debug.Log("Setting Game Over to " + gameOver);
+        
         evaluateGameState();
     }
 
