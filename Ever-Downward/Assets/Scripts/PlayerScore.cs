@@ -39,12 +39,12 @@ public class PlayerScore : MonoBehaviour
     {
         depth += val;
         guiDepth.text="Depth: " + depth.ToString();
-        Debug.Log("Depth: " + depth);
+        //Debug.Log("Depth: " + depth);
     }
     public void setGold(int val)
     {
         gold += val;
         guiGold.text = "Gold: " + gold.ToString();
-        Debug.Log("Gold: " + gold);
+        //Debug.Log("Gold: " + gold);
     }
 }

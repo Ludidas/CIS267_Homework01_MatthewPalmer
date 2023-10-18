@@ -8,14 +8,12 @@ public class GameManager : MonoBehaviour
     public PlayerScore playerScore;
 
     private bool gameOver;
-    private float decimalTime=0f;
-    private int time;
+    private float decimalTime=0;
 
     // Start is called before the first frame update
     void Start()
     {
         setGameOver(false);
-        time = 0;
     }
 
     // Update is called once per frame
@@ -49,26 +47,20 @@ public class GameManager : MonoBehaviour
     //Timer===========================================
     public void timerTick()
     {
-        decimalTime += Time.deltaTime;
-        updateGuiDepth(decimalTime);
+        if (decimalTime < 1)
+        {
+            decimalTime += Time.deltaTime;
+        }
+        else
+        {
+            playerScore.setDepth(1);
+            decimalTime = 0;
+        }
 
     }
-    public void updateGuiDepth(float decimalTime)
-    {
-        //int depth = (int)time;
-        time=Mathf.RoundToInt(decimalTime);
-        //Debug.Log(depth);
-
-        playerScore.setDepth(time);
-        //guiDepth.text = "Time: " + time;
-    }
 
 
 
-    //public static decimal Truncate(decimal value, int digits)
-    //{
-    //    double mult = Math.Pow(10.0, digits);
-    //    double result = Math.Truncate(mult * value) / mult;
-    //    return (float)result;
-    //}
+
+
 }

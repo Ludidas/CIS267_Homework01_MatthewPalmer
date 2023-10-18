@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class PlatformSpawner : MonoBehaviour
 {
-    public GameObject platform;
+    public GameObject[] platforms;
+    public GameObject[] spawnLocations;
     public float spawnRate;
     private float timer;
 
@@ -31,6 +32,28 @@ public class PlatformSpawner : MonoBehaviour
     }
     void spawnPlatform()
     {
-        Instantiate(platform, transform.position, transform.rotation);
+        int randomIndex;
+        int randomSpawn;
+        int spawnedTimes=0;
+        GameObject spawnedPrefab;
+        bool oneSpawn = true;
+        
+
+
+        for(int i = 0; i < spawnLocations.Length; i++)
+        {
+            randomIndex = Random.Range(0, platforms.Length);
+            randomSpawn = Random.Range(0, 2);
+
+            if(randomSpawn.Equals(0) && spawnedTimes<4 || oneSpawn.Equals(true))
+            {
+                spawnedPrefab = Instantiate(platforms[randomIndex].gameObject);
+
+                spawnedPrefab.transform.position = new Vector2(spawnLocations[i].transform.position.x, spawnLocations[i].transform.position.y);
+                spawnedTimes++;
+                oneSpawn = false;
+            }
+
+        }
     }
 }
