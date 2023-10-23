@@ -33,8 +33,6 @@ public class BackgroundSpawner : MonoBehaviour
     {
         GameObject spawnedPrefab;
 
-
-
         spawnedPrefab = Instantiate(background.gameObject);
         spawnedPrefab.transform.position = new Vector2(spawnPoint.transform.position.x, spawnPoint.transform.position.y);
 

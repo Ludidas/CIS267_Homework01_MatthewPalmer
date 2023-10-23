@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         setGameOver(false);
+        Debug.Log("High Score: " + SaveData.loadScore());
     }
 
     // Update is called once per frame
@@ -41,6 +42,7 @@ public class GameManager : MonoBehaviour
     {
         if (gameOver)
         {
+            SaveData.saveScore(playerScore.getScore());
             Time.timeScale = 0f;
         }
         else
@@ -62,7 +64,6 @@ public class GameManager : MonoBehaviour
             playerScore.setDepth(1);
             decimalTime = 0;
         }
-
     }
 
 

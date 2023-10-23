@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 790b221b8c4bc6b4a965f06759aba7ca
+guid: 20dc917b4d322f249af67c492c22a83f
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -119,18 +119,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: White guy_Frame_0
+  - name: Player_Frame_0
     originalName: 
-    pivot: {x: 0.44444445, y: 0}
+    pivot: {x: 0.4528302, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 54
+      width: 53
       height: 50
-    spriteID: 4d5ffa375d9e6484d939425fe01044f4
+    spriteID: 5e966681edfdb844e8521b1846f07674
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -139,18 +139,18 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: White guy_Frame_1
+  - name: Player_Frame_1
     originalName: 
-    pivot: {x: 0.32608697, y: 0}
+    pivot: {x: 0.4423077, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 62
-      width: 46
-      height: 50
-    spriteID: 4797417311ca1fb4c9b03bd3bfe31b5c
+      width: 52
+      height: 49
+    spriteID: 5786708dd19d3714ca8008103dec5e97
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -162,28 +162,28 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -1839399764
-    name: White guy
+    guid: 1687901567
+    name: Player
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: White guy_Frame_0
+    - name: Player_Frame_0
       frameIndex: 0
       cellRect:
         x: 8
         y: 0
-        width: 54
+        width: 53
         height: 50
-      spriteId: 4d5ffa375d9e6484d939425fe01044f4
-    - name: White guy_Frame_1
+      spriteId: 5e966681edfdb844e8521b1846f07674
+    - name: Player_Frame_1
       frameIndex: 1
       cellRect:
-        x: 17
+        x: 9
         y: 0
-        width: 46
-        height: 50
-      spriteId: 4797417311ca1fb4c9b03bd3bfe31b5c
+        width: 52
+        height: 49
+      spriteId: 5786708dd19d3714ca8008103dec5e97
     linkedCells: []
     parentIndex: -1
   platformSettings: []

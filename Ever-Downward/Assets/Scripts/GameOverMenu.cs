@@ -19,11 +19,9 @@ public class GameOverMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("GameOverMenu update being called " + gm.getGameOver());
-
         if (gm.getGameOver()==true)
         {
-            Debug.Log("gm getGameOver==true functioning");
+            //Debug.Log("gm getGameOver==true functioning");
             showGameOverMenu();
         }
     }

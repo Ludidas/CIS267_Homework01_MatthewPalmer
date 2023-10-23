@@ -10,6 +10,9 @@ TagManager:
   - Ring
   - Diamond
   - OB
+  - Enemy
+  - Heart
+  - Magic
   layers:
   - Default
   - TransparentFX

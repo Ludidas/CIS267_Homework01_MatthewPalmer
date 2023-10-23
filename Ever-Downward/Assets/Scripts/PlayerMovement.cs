@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -108,25 +109,42 @@ public class PlayerMovement : MonoBehaviour
             jumpBufferCount -= Time.deltaTime; 
         }
     }
+
+    //===================================================================================================
+
+
     //When a platform is being stood on, sets grounded boolean to true
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //Debug.Log(collision.gameObject);
 
-        if (collision.gameObject.CompareTag("OB"))
+        if (collision.gameObject.CompareTag("Grounded"))
+        {
+            isGrounded = true;
+        }
+        else if (collision.gameObject.CompareTag("OB"))
         {
             gm.setGameOver(true);
             Debug.Log("Touched OB");
         }
-        else if (collision.gameObject.CompareTag("Grounded"))
+        else if(collision.gameObject.CompareTag("Enemy"))
         {
-            isGrounded = true;
+            Debug.Log("Touched Enemy");
+
+            int enemyDamage=collision.gameObject.GetComponent<Enemies>().getEnemyDamage();
+
+            //When enemy is touched, decrease health by one and destroy the enemy
+            GetComponent<PlayerHealth>().decreaseHealth(enemyDamage);
+            collision.gameObject.GetComponent<Enemies>().destroyEnemy();
+
+            //Debug.Log(GetComponent<PlayerHealth>().gethealth());
+            if (GetComponent<PlayerHealth>().gethealth()==0)
+            {
+                gm.setGameOver(true);
+            }
         }
-    }
-    //When a platform is no longer being stood on, sets grounded boolean to false
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        isGrounded=false;
+        
+
     }
 
     //For collectables
@@ -142,7 +160,24 @@ public class PlayerMovement : MonoBehaviour
             //add to player score
             GetComponent<PlayerScore>().setGold(collectableValue);
         }
+        else if(collision.gameObject.CompareTag("Heart"))
+        {
+            //Increase health
+            GetComponent<PlayerHealth>().increaseHealth(1);
+            collision.GetComponent<Collectables>().destroyCollectable();
+        }
+        else if(collision.gameObject.CompareTag("Magic"))
+        {
+            GetComponent<PowerUp>().setMagicPower(true);
 
-        
+            collision.GetComponent<Collectables>().destroyCollectable();
+        }
+        else if(collision.gameObject.CompareTag("Wizard Hat"))
+        {
+            GetComponent<PowerUp>().setWizardPower(true);
+
+            collision.GetComponent<Collectables>().destroyCollectable();
+        }
+
     }
 }
