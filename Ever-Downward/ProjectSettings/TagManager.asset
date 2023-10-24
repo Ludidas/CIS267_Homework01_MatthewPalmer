@@ -13,6 +13,8 @@ TagManager:
   - Enemy
   - Heart
   - Magic
+  - PlayerProjectile
+  - Crow
   layers:
   - Default
   - TransparentFX

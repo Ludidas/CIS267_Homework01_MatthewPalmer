@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Animations;
 using UnityEngine;
 
 public class PowerUp : MonoBehaviour
@@ -77,6 +76,7 @@ public class PowerUp : MonoBehaviour
         {
             Debug.Log("INVINCIBILITY FINISHED");
             magicPower = false;
+            magicTime = 0;
             normalSpriteChange();
             GetComponent<PlayerHealth>().setHealth(2);
         }
@@ -120,6 +120,7 @@ public class PowerUp : MonoBehaviour
             Debug.Log("WIZARD FINISHED");
             wizardOutfit.SetActive(false);
             wizardPower = false;
+            wizardTime = 0;
         }
     }
 

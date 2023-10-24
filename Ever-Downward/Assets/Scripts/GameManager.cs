@@ -7,6 +7,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public PlayerScore playerScore;
+    public FireWeapon fireWeapon;
 
     private bool gameOver;
     private float decimalTime=0;
@@ -15,7 +16,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         setGameOver(false);
-        Debug.Log("High Score: " + SaveData.loadScore());
     }
 
     // Update is called once per frame
@@ -65,9 +65,6 @@ public class GameManager : MonoBehaviour
             decimalTime = 0;
         }
     }
-
-
-
 
 
 }

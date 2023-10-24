@@ -1,30 +1,65 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.InteropServices.ComTypes;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class SaveData
 {
+    
     public static void saveScore(int score)
     {
-        if (score > loadScore())
+        //Create new int array
+        int[] scoresList = new int[6];
+        //Used after sorting
+        int[] finalScoresList = new int[6];
+
+
+        //Grab array from saved file (converted to integer) and save it to loadedScores
+        scoresList = loadScore();
+
+
+        //If score is bigger than the smallest score (Highest score is scoresList[0] and lowest is scoresList[4])
+        //There is an extra variable to allow for it to be brought in, sorted, and have the final number in the array ignored
+        if (score > scoresList[4])
         {
+
+
+            for (int i = 0; i < scoresList.Length; i++)
+            {
+                finalScoresList[i] = scoresList[i];
+            }
+            finalScoresList[5] = score;
+
+
+
+            //Sorts array
+            Array.Sort(finalScoresList);
+
+            //Reverses array descendingly
+            Array.Reverse(finalScoresList);
+
+
+            //Save array
             string path = Application.persistentDataPath + "/playerScore.sc";
 
             BinaryFormatter bf = new BinaryFormatter();
 
             FileStream stream = new FileStream(path, FileMode.Create);
 
-            bf.Serialize(stream, score);
+            //Serialize back into comma separated list
+            bf.Serialize(stream, finalScoresList[0] + "," + finalScoresList[1] + "," + finalScoresList[2] + "," + finalScoresList[3] + "," + finalScoresList[4]);
 
             stream.Close();
         }
-
     }
 
-    public static int loadScore()
+    public static int[] loadScore()
     {
         string path = Application.persistentDataPath + "/playerScore.sc";
 
@@ -34,44 +69,38 @@ public class SaveData
 
             FileStream stream = new FileStream(path, FileMode.Open);
 
-            int score = (int)bf.Deserialize(stream);
+            String loadedScores = (String)bf.Deserialize(stream);
+
+            //========================================================
+            //Sorting comma separated List and turning into int array
+
+            int[] nums = Array.ConvertAll(loadedScores.Split(','), int.Parse);
+
 
             stream.Close();
 
-            return score;
+            return nums;
         }
         else
         {
             Debug.LogError("File not found in " + path);
-            return -1;
+            resetScore();
+            return null;
         }
     }
 
-    //public List<ScoreClass> LoadData()
-    //{
-    //    if (File.Exists(path))
-    //    {
-    //        FileStream stream = new FileStream(path, FileMode.Open);
+    public static void resetScore()
+    {
+        string path = Application.persistentDataPath + "/playerScore.sc";
 
-    //        string[] loadednames = new string[5];
-    //        int[] loadedscores = new int[5];
-    //        loadedscores = formatter.Deserialize(stream) as int[];
-    //        loadednames = formatter.Deserialize(stream) as string[];
-    //        List<ScoreClass> loadedList = new List<ScoreClass>();
-    //        for (int i = 0; i <= 4; i++)
-    //        {
-    //            loadedList[i] = new ScoreClass(loadedscores[i], loadednames[i]);
+        BinaryFormatter bf = new BinaryFormatter();
 
-    //        }
-    //        return loadedList;
+        FileStream stream = new FileStream(path, FileMode.Create);
 
-    //    }
-    //    else
-    //    {
-    //        Debug.LogError("save file not found in: " + path);
-    //        return null;
-    //    }
-    //}
+        bf.Serialize(stream, "0,0,0,0,0");
+
+        stream.Close();
+    }
 
 }
 

@@ -5,6 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    void Start()
+    {
+        //Initializes playerscore file if it doesn't exist
+        SaveData.loadScore();
+    }
+
     public void loadGame()
     {
         SceneManager.LoadScene("InfiniteRunner");

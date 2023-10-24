@@ -12,7 +12,7 @@ public class ProjectileMovement : MonoBehaviour
     void Start()
     {
         //call the destroyBullet function after bulletLife seconds
-        Invoke("destroyBullet", projectileLife);
+        Invoke("destroyProjectile", projectileLife);
     }
 
     // Update is called once per frame
@@ -28,5 +28,18 @@ public class ProjectileMovement : MonoBehaviour
     {
         //Remove the projectile from the screen
         Destroy(this.gameObject);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            collision.gameObject.GetComponent<Enemies>().destroyEnemy();
+        }
+        if (collision.gameObject.CompareTag("Crow"))
+        {
+            collision.gameObject.GetComponent<Crow>().flipCrow();
+        }
+
     }
 }

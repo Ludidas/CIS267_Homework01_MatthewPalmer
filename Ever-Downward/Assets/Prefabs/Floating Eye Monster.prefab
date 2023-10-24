@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1389336842135622705}
   - component: {fileID: 7429970355001152100}
   - component: {fileID: 4160999199404095331}
+  - component: {fileID: 2386034265147052218}
   m_Layer: 0
   m_Name: Floating Eye Monster
   m_TagString: Enemy
@@ -211,5 +212,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 1
-  leftOffset: 1.5
-  rightOffset: 1.5
+  leftOffset: 1.4
+  rightOffset: 1.4
+--- !u!50 &2386034265147052218
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7224107097458031245}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 1
+  m_Mass: 1.02015
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
